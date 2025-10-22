@@ -3,8 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Moedas</title>
-    <link rel="stylesheet" href="../static/style/valores.css">
+    <title>Valores em Tempo Real</title>
+    <link rel="stylesheet" href="/static/style/valores.css">
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+        }
+        table th, table td {
+            padding: 0.75rem 1rem;
+            border: 1px solid rgba(247, 147, 26, 0.2);
+            text-align: left;
+        }
+        table th {
+            background-color: rgba(247, 147, 26, 0.1);
+            font-weight: 600;
+            color: #f7931a;
+        }
+        table td {
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.1rem;
+        }
+        table tbody tr:nth-child(even) {
+            background-color: rgba(255, 255, 255, 0.03);
+        }
+        .base-selector {
+            display: flex;
+            gap: 0.5rem;
+            align-items: center;
+            font-size: 1.1rem;
+        }
+        select {
+            padding: 0.5rem;
+            background: rgba(255, 255, 255, 0.08);
+            border: 2px solid rgba(247, 147, 26, 0.3);
+            border-radius: 8px;
+            color: #000000;
+            font-size: 1rem;
+        }
+    </style>
 </head>
 <body>
     <div class="background-overlay"></div>
@@ -12,25 +50,43 @@
 
     <div class="container">
         <header class="header">
-            <h1 class="title">Moedas Disponíveis</h1>
-            <p class="subtitle">Explore as moedas suportadas pelo conversor</p>
+            <h1 class="title">Taxas de Câmbio</h1>
+            <p class="subtitle">Valores em relação à moeda base selecionada</p>
         </header>
 
         <main class="main">
             <section class="currency-section">
                 <div class="currency-card">
-                    <h2>Valores das Moedas</h2>
-                    <div id="currency-list" class="currency-grid">
+                    
+                    <div class="spinner-container" id="loadingSymbols" style="display: none;">
+                        <div class="spinner"></div>
                     </div>
+                    
+                    <div class="base-selector">
+                        <label for="baseSelect">Base:</label>
+                        <select id="baseSelect"></select>
+                    </div>
+
+                    <table id="ratesTable">
+                        <thead>
+                            <tr><th>Moeda</th><th>Taxa</th></tr>
+                        </thead>
+                        <tbody>
+                            </tbody>
+                    </table>
+                    
+                    <p style="text-align: center; margin-top: 1rem; opacity: 0.7;">
+                        Atualizando a cada 60 segundos.
+                    </p>
                 </div>
             </section>
-
+            
             <nav class="nav">
-                <a href="index.html" class="btn secondary">Voltar ao Início</a>
+                <a href="/" class="btn secondary">Voltar para Home</a>
             </nav>
         </main>
     </div>
 
-    <script src="../static/js/valores.js"></script>
+    <script src="/static/js/valores.js"></script>
 </body>
 </html>
