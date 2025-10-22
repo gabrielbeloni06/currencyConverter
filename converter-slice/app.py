@@ -1,0 +1,1 @@
+//Adaptação do flask a ser feita
